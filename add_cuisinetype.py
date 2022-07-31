@@ -1,10 +1,10 @@
-CuisineType_array = {"American", "Asian", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
+CuisineType_array = {"American", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
                      "Mediterranean", "Mexican"}
 
 CuisineType_array = [CuisineType_array.lower() for CuisineType_array in CuisineType_array]
 
 # removed from CuisineType_array
-# "Central Europe"  "Eastern Europe" "Middle Eastern" "Nordic" "South American" "South East Asian"
+# "Asian" "Central Europe"  "Eastern Europe" "Middle Eastern" "Nordic" "South American" "South East Asian"
 
 # ask user to enter cuisine preference
 inputCuisineType = input(
