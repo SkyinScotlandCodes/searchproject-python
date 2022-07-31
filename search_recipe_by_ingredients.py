@@ -9,14 +9,14 @@ includeAppId = "app_id={}".format(app_id)
 includeAppKey = "app_key={}".format(app_key)
 
 # ask user to enter ingredient(s)
-ingredient = input("Please enter one or more ingredients to search for: ")
+inputIngredient = input("Please enter one or more ingredients to search for: ")
 # return invalid response if user enters nothing or only spaces
-while ingredient == "" or ingredient.isspace():
-    ingredient = input("Invalid Response. Please enter at least one or more ingredients. Try again: ")
+while inputIngredient == "" or inputIngredient.isspace():
+    inputIngredient = input("Invalid Response. Please enter at least one or more ingredients. Try again: ")
 # prints out choose ingredient/s
-print("You have chosen these ingredients:  " + ingredient)
+print("You have chosen these ingredients: " + inputIngredient)
 
-addIngredients = ingredient
+addIngredients = inputIngredient
 startPagination = "from=0"
 endPagination = "to=10"
 
@@ -31,10 +31,12 @@ else:
 
 # # Returns json
 # print(r.json())
+
 data = r.json()
+
+# Returns the total number of recipes found
+print(data['count'])
 
 # Returns the first result in json
 print(data['hits'][0])
 
-# Returns the total number of recipes found
-print(data['count'])
