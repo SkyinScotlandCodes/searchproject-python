@@ -13,16 +13,21 @@ ingredient = input("Please enter one or more ingredients to search for: ")
 # return invalid response if user enters nothing or only spaces
 while ingredient == "" or ingredient.isspace():
     ingredient = input("Invalid Response. Please enter at least one or more ingredients. Try again: ")
-ingredients_selected = "You have chosen these ingredients = " + ingredient
-print(ingredients_selected)
+# prints out choose ingredient/s
+print("You have chosen these ingredients:  " + ingredient)
 
 addIngredients = ingredient
+startPagination = "from=0"
+endPagination = "to=10"
 
-r = requests.get("https://api.edamam.com/search?q={}&{}&{}".format(addIngredients, includeAppId, includeAppKey))
+r = requests.get(
+    f"https://api.edamam.com/search?q={addIngredients}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
 
 # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-print(r)
-print("Your request was successful")
+if r.status_code == 200:
+    print("Your request was successful")
+else:
+    print("Error: " + str(r))
 
 # # Returns json
 # print(r.json())
