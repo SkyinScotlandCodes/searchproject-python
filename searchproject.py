@@ -19,7 +19,7 @@ inputIngredient = input("Please enter one or more ingredients to search for: ")
 while inputIngredient == "" or inputIngredient.isspace():
     inputIngredient = input("Invalid Response. Please enter at least one or more ingredients. Try again: ")
 # prints out choose ingredient/s
-print("You have chosen these ingredients: " + inputIngredient)
+# print("You have chosen these ingredients: " + inputIngredient)
 
 addIngredients = inputIngredient
 
@@ -30,9 +30,11 @@ inputCuisineType = input(
 while (inputCuisineType != "N" and inputCuisineType != "n") and inputCuisineType not in CuisineType_array:
     inputCuisineType = input(
         f"Invalid Response. Please enter choose a preferred cuisine from the following options below or type 'N' if none - \n{CuisineType_array}: ")
-print("You have chosen: " + inputCuisineType)
+# print("You have chosen: " + inputCuisineType)
 
 addCuisineType = inputCuisineType
+
+print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
 
 r = requests.get(
