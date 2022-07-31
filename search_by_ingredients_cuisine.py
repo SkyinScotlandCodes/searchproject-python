@@ -29,7 +29,7 @@ inputCuisineType = input(
     f"Please enter choose a preferred cuisine from the following options below or type 'N' if none - \n{CuisineType_array}: ")
 while (inputCuisineType != "N" and inputCuisineType != "n") and inputCuisineType not in CuisineType_array:
     inputCuisineType = input(
-        f"Please enter choose a preferred cuisine from the following options below or type 'N' if none - \n{CuisineType_array}: ")
+        f"Invalid Response. Please enter choose a preferred cuisine from the following options below or type 'N' if none - \n{CuisineType_array}: ")
 print("You have chosen: " + inputCuisineType)
 
 addCuisineType = inputCuisineType
