@@ -13,6 +13,8 @@ endPagination = "to=10"
 CuisineType_array = {"American", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
                      "Mediterranean", "Mexican"}
 
+CuisineType_array = [CuisineType_array.lower() for CuisineType_array in CuisineType_array]
+
 # ask user to enter ingredient(s)
 inputIngredient = input("Please enter one or more ingredients to search for: ")
 # return invalid response if user enters nothing or only spaces

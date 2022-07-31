@@ -17,11 +17,11 @@ while inputIngredient == "" or inputIngredient.isspace():
 print("You have chosen these ingredients: " + inputIngredient)
 
 addIngredients = inputIngredient
-startPagination = "from=0"
-endPagination = "to=10"
+startPagination = "0"
+endPagination = "10"
 
 r = requests.get(
-    f"https://api.edamam.com/search?q={addIngredients}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
+    f"https://api.edamam.com/search?q={addIngredients}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}")
 
 # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
 if r.status_code == 200:

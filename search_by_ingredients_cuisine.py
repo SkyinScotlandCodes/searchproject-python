@@ -7,8 +7,8 @@ app_key = config.application_key
 
 includeAppId = "app_id={}".format(app_id)
 includeAppKey = "app_key={}".format(app_key)
-startPagination = "from=0"
-endPagination = "to=10"
+startPagination = "0"
+endPagination = "10"
 
 CuisineType_array = {"American", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
                      "Mediterranean", "Mexican"}
@@ -36,7 +36,7 @@ addCuisineType = inputCuisineType
 
 
 r = requests.get(
-    f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
+    f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}")
 
 data = r.json()
 results = data['hits']
