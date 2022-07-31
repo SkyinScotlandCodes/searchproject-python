@@ -44,6 +44,12 @@ results = data['hits']
 
 count = data['count']
 
+# Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+if r.status_code == 200:
+    print("Your request was successful")
+else:
+    print("Error: " + str(r))
+
 print(f"{count} recipes found")
 
 for result in results:
