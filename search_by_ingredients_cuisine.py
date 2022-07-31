@@ -10,7 +10,7 @@ includeAppKey = "app_key={}".format(app_key)
 startPagination = "from=0"
 endPagination = "to=10"
 
-CuisineType_array = {"American", "Asian", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
+CuisineType_array = {"American", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
                      "Mediterranean", "Mexican"}
 
 # ask user to enter ingredient(s)
@@ -46,4 +46,3 @@ for result in results:
     print(recipe['label'])
     print(recipe['url'])
     print()
-
