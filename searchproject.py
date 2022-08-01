@@ -52,7 +52,7 @@ else:
 
 print(f"{count} recipes found")
 
-with open('listfile.txt', 'w') as f:
+with open('recipes.txt', 'w') as f:
   for result in results:
     recipe = result['recipe']
     print(recipe['label'])
