@@ -52,8 +52,10 @@ else:
 
 print(f"{count} recipes found")
 
-for result in results:
+with open('listfile.txt', 'w') as f:
+  for result in results:
     recipe = result['recipe']
     print(recipe['label'])
-    print(recipe['url'])
-    print()
+    print(recipe['uri'])
+    f.write('%s\n' % recipe['label'])
+    f.write('%s\n' % recipe['uri'])
