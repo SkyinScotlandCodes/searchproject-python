@@ -27,7 +27,7 @@ addIngredients = inputIngredient
 # ask user to enter cuisine preference
 inputCuisineType = input(
     f"Please enter choose a preferred cuisine from the following options below - \n{CuisineType_array}: ")
-while inputCuisineType not in CuisineType_array:
+while inputCuisineType.capitalize() not in CuisineType_array:
     inputCuisineType = input(
         f"Invalid Response. Please enter choose a preferred cuisine from the following options below or type 'N' if none - \n{CuisineType_array}: ")
 # print("You have chosen: " + inputCuisineType)
@@ -52,8 +52,10 @@ else:
 
 print(f"{count} recipes found")
 
-for result in results:
+with open('recipes.txt', 'w') as f:
+  for result in results:
     recipe = result['recipe']
     print(recipe['label'])
-    print(recipe['url'])
-    print()
+    print(recipe['uri'])
+    f.write('%s\n' % recipe['label'])
+    f.write('%s\n' % recipe['uri'])
