@@ -23,7 +23,6 @@ while inputIngredient == "" or inputIngredient.isspace():
 
 addIngredients = inputIngredient
 
-
 # ask user to enter cuisine preference
 inputCuisineType = input(
     f"Please enter choose a preferred cuisine from the following options below - \n{CuisineType_array}: ")
@@ -52,10 +51,46 @@ else:
 
 print(f"{count} recipes found")
 
-with open('recipes.txt', 'w') as f:
-  for result in results:
-    recipe = result['recipe']
-    print(recipe['label'])
-    print(recipe['uri'])
-    f.write('%s\n' % recipe['label'])
-    f.write('%s\n' % recipe['uri'])
+# for result in results:
+#     recipe = result['recipe']
+#     print(recipe['label'])
+#     print(recipe['uri'])
+
+for i in range(1, 12):
+    print("----")
+    endPagination = i * 10
+    startPagination = endPagination - 10
+    url = f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}"
+    print(f"Showing recipe results from {startPagination} to {endPagination}")
+    r = requests.get(url)
+
+    data = r.json()
+    results = data['hits']
+
+    count = data['count']
+
+    # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+    if r.status_code == 200:
+        print("Your request was successful")
+    else:
+        print("Error: " + str(r))
+        break
+
+    print(f"{count} recipes found")
+    for result in results:
+        recipe = result['recipe']
+        print(recipe['label'])
+        print(recipe['uri'])
+    if count < 10:
+        break
+    input("Do you want ten more recipes? ")
+    if input != "yes" and "y":
+        break
+
+# with open('recipes.txt', 'w') as f:
+#     for result in results:
+#         recipe = result['recipe']
+#         print(recipe['label'])
+#         print(recipe['uri'])
+#         f.write('%s\n' % recipe['label'])
+#         f.write('%s\n' % recipe['uri'])
