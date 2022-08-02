@@ -32,24 +32,24 @@ while inputCuisineType.capitalize() not in CuisineType_array:
 # print("You have chosen: " + inputCuisineType)
 
 addCuisineType = inputCuisineType
-
+print("----")
 print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
-r = requests.get(
-    f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
-
-data = r.json()
-results = data['hits']
-
-count = data['count']
-
-# Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-if r.status_code == 200:
-    print("Your request was successful")
-else:
-    print("Error: " + str(r))
-
-print(f"{count} recipes found")
+# r = requests.get(
+#     f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
+#
+# data = r.json()
+# results = data['hits']
+#
+# count = data['count']
+#
+# # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+# if r.status_code == 200:
+#     print("Your request was successful")
+# else:
+#     print("Error: " + str(r))
+#
+# print(f"{count} recipes found")
 
 # for result in results:
 #     recipe = result['recipe']
@@ -71,11 +71,14 @@ for i in range(1, 12):
 
     # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
     if r.status_code == 200:
+        print("----")
         print("Your request was successful")
     else:
+        print("----")
         print("Error: " + str(r))
         break
 
+    print("----")
     print(f"{count} recipes found")
     for result in results:
         recipe = result['recipe']
@@ -83,6 +86,7 @@ for i in range(1, 12):
         print(recipe['uri'])
     if count < 10:
         break
+    print("----")
     input("Do you want ten more recipes? ")
     if input != "yes" and "y":
         break
