@@ -87,8 +87,8 @@ for i in range(1, 12):
     if count < 10:
         break
     print("----")
-    input("Do you want ten more recipes? ")
-    if input != "yes" and "y":
+    moreRecipes = input("Do you want ten more recipes? Yes/No ")
+    if moreRecipes != "Yes" and "yes":
         break
 
 # with open('recipes.txt', 'w') as f:
