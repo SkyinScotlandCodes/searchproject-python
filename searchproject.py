@@ -33,7 +33,6 @@ print("----")
 print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
 with open('recipes.txt', 'w') as f:
-
     for i in range(1, 11):
         print("----")
         endPagination = i * 10
@@ -73,4 +72,3 @@ with open('recipes.txt', 'w') as f:
         moreRecipes = input("Do you want ten more recipes? Yes/No ")
         if moreRecipes.capitalize() != "Yes":
             break
-
