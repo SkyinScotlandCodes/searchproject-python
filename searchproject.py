@@ -88,7 +88,7 @@ for i in range(1, 12):
         break
     print("----")
     moreRecipes = input("Do you want ten more recipes? Yes/No ")
-    if moreRecipes != "Yes" and "yes":
+    if moreRecipes.capitalize() != "Yes":
         break
 
 # with open('recipes.txt', 'w') as f:
