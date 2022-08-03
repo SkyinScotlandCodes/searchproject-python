@@ -7,8 +7,8 @@ app_key = config.application_key
 
 includeAppId = "app_id={}".format(app_id)
 includeAppKey = "app_key={}".format(app_key)
-startPagination = "from=0"
-endPagination = "to=10"
+startPagination = "0"
+endPagination = "10"
 
 CuisineType_array = {"American", "British", "Caribbean", "Chinese", "French", "Italian", "Japanese", "Kosher",
                      "Mediterranean", "Mexican"}
@@ -33,7 +33,16 @@ print("----")
 print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
 with open('recipes.txt', 'w') as f:
-    for i in range(1, 11):
+    rangeURL = f"https://api.edamam.com/search?q={inputIngredient}&cuisineType={inputCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}"
+    rangeR = requests.get(rangeURL)
+    data = rangeR.json()
+    rangeCount = int(data['count'] / 10)
+    # print(rangeCount)
+
+    print("----")
+    print(f"{data['count']} recipes found")
+
+    for i in range(1, rangeCount):
         print("----")
         endPagination = i * 10
         startPagination = endPagination - 10
@@ -52,23 +61,26 @@ with open('recipes.txt', 'w') as f:
 
         data = r.json()
         results = data['hits']
-        count = data['count']
+        # count = data['count']
         more = data['more']
 
-        print("----")
-        print(f"{count} recipes found")
+        # print("----")
+        # print(f"{count} recipes found")
         for result in results:
             recipe = result['recipe']
             print("----")
             print(recipe['label'])
             print(recipe['url'])
             f.write('%s\n' % recipe['label'])
-            f.write('%s\n' % recipe['uri'])
+            f.write('%s\n' % recipe['url'])
         if not more:
             print("----")
             print("That's all the recipes!")
             break
         print("----")
         moreRecipes = input("Do you want ten more recipes? Yes/No ")
+        if moreRecipes.capitalize() == "No":
+            print("----")
+            print("Your search results have now been saved in a txt doc")
         if moreRecipes.capitalize() != "Yes":
             break
