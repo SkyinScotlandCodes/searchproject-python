@@ -32,48 +32,45 @@ while inputCuisineType.capitalize() not in CuisineType_array:
 print("----")
 print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
-for i in range(1, 11):
-    print("----")
-    endPagination = i * 10
-    startPagination = endPagination - 10
-    url = f"https://api.edamam.com/search?q={inputIngredient}&cuisineType={inputCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}"
-    print(f"Showing recipe results from {startPagination} to {endPagination}")
-    r = requests.get(url)
+with open('recipes.txt', 'w') as f:
 
-    # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-    if r.status_code == 200:
+    for i in range(1, 11):
         print("----")
-        print("Your request was successful")
-    else:
-        print("----")
-        print("Error: " + str(r))
-        break
+        endPagination = i * 10
+        startPagination = endPagination - 10
+        url = f"https://api.edamam.com/search?q={inputIngredient}&cuisineType={inputCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}"
+        print(f"Showing recipe results from {startPagination} to {endPagination}")
+        r = requests.get(url)
 
-    data = r.json()
-    results = data['hits']
-    count = data['count']
-    more = data['more']
+        # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+        if r.status_code == 200:
+            print("----")
+            print("Your request was successful")
+        else:
+            print("----")
+            print("Error: " + str(r))
+            break
 
-    print("----")
-    print(f"{count} recipes found")
-    for result in results:
-        recipe = result['recipe']
-        print("----")
-        print(recipe['label'])
-        print(recipe['url'])
-    if not more:
-        print("----")
-        print("That's all the recipes!")
-        break
-    print("----")
-    moreRecipes = input("Do you want ten more recipes? Yes/No ")
-    if moreRecipes.capitalize() != "Yes":
-        break
+        data = r.json()
+        results = data['hits']
+        count = data['count']
+        more = data['more']
 
-# with open('recipes.txt', 'w') as f:
-#     for result in results:
-#         recipe = result['recipe']
-#         print(recipe['label'])
-#         print(recipe['uri'])
-#         f.write('%s\n' % recipe['label'])
-#         f.write('%s\n' % recipe['uri'])
+        print("----")
+        print(f"{count} recipes found")
+        for result in results:
+            recipe = result['recipe']
+            print("----")
+            print(recipe['label'])
+            print(recipe['url'])
+            f.write('%s\n' % recipe['label'])
+            f.write('%s\n' % recipe['uri'])
+        if not more:
+            print("----")
+            print("That's all the recipes!")
+            break
+        print("----")
+        moreRecipes = input("Do you want ten more recipes? Yes/No ")
+        if moreRecipes.capitalize() != "Yes":
+            break
+
