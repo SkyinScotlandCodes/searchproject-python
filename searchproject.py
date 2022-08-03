@@ -32,27 +32,6 @@ while inputCuisineType.capitalize() not in CuisineType_array:
 print("----")
 print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}')
 
-# r = requests.get(
-#     f"https://api.edamam.com/search?q={addIngredients}&cuisineType={addCuisineType}&{includeAppId}&{includeAppKey}&{startPagination}&{endPagination}")
-#
-# data = r.json()
-# results = data['hits']
-#
-# count = data['count']
-#
-# # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-# if r.status_code == 200:
-#     print("Your request was successful")
-# else:
-#     print("Error: " + str(r))
-#
-# print(f"{count} recipes found")
-
-# for result in results:
-#     recipe = result['recipe']
-#     print(recipe['label'])
-#     print(recipe['uri'])
-
 for i in range(1, 12):
     print("----")
     endPagination = i * 10
@@ -81,13 +60,11 @@ for i in range(1, 12):
         recipe = result['recipe']
         print("----")
         print(recipe['label'])
-        print(recipe['uri'])
+        print(recipe['url'])
     if not more:
         print("----")
         print("That's all the recipes!")
         break
-    # if count < 10:
-    #     break
     print("----")
     moreRecipes = input("Do you want ten more recipes? Yes/No ")
     if moreRecipes.capitalize() != "Yes":
