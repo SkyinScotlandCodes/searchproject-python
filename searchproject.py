@@ -63,8 +63,8 @@ for i in range(1, 12):
 
     data = r.json()
     results = data['hits']
-
     count = data['count']
+    more = data['more']
 
     # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
     if r.status_code == 200:
@@ -79,10 +79,15 @@ for i in range(1, 12):
     print(f"{count} recipes found")
     for result in results:
         recipe = result['recipe']
+        print("----")
         print(recipe['label'])
         print(recipe['uri'])
-    if count < 10:
+    if not more:
+        print("----")
+        print("That's all the recipes!")
         break
+    # if count < 10:
+    #     break
     print("----")
     moreRecipes = input("Do you want ten more recipes? Yes/No ")
     if moreRecipes.capitalize() != "Yes":
