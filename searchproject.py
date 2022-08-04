@@ -60,15 +60,6 @@ with open('recipes.txt', 'w') as f:
         print(f"Showing recipe results from {startPagination} to {endPagination}")
         r = requests.get(url)
 
-        # # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-        # if r.status_code == 200:
-        #     print("----")
-        #     print("Your request was successful")
-        # else:
-        #     print("----")
-        #     print("Error: " + str(r))
-        #     break
-
         data = r.json()
         results = data['hits']
         # count = data['count']
