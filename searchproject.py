@@ -1,5 +1,6 @@
 import requests
 import config
+import math
 
 # Register to get an APP ID and key https://developer.edamam.com/
 app_id = config.application_id
@@ -35,8 +36,17 @@ print(f'You have searched for {inputCuisineType} recipes using {inputIngredient}
 with open('recipes.txt', 'w') as f:
     rangeURL = f"https://api.edamam.com/search?q={inputIngredient}&cuisineType={inputCuisineType}&{includeAppId}&{includeAppKey}&from={startPagination}&to={endPagination}"
     rangeR = requests.get(rangeURL)
+
+    if rangeR.status_code == 200:
+        print("----")
+        print("Your request was successful")
+    else:
+        print("----")
+        print("Error: " + str(rangeR))
+
     data = rangeR.json()
-    rangeCount = int(data['count'] / 10)
+
+    rangeCount = int(math.ceil(data['count'] / 10))
     # print(rangeCount)
 
     print("----")
@@ -50,22 +60,20 @@ with open('recipes.txt', 'w') as f:
         print(f"Showing recipe results from {startPagination} to {endPagination}")
         r = requests.get(url)
 
-        # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
-        if r.status_code == 200:
-            print("----")
-            print("Your request was successful")
-        else:
-            print("----")
-            print("Error: " + str(r))
-            break
+        # # Returns HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+        # if r.status_code == 200:
+        #     print("----")
+        #     print("Your request was successful")
+        # else:
+        #     print("----")
+        #     print("Error: " + str(r))
+        #     break
 
         data = r.json()
         results = data['hits']
         # count = data['count']
         more = data['more']
 
-        # print("----")
-        # print(f"{count} recipes found")
         for result in results:
             recipe = result['recipe']
             print("----")
