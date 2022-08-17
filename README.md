@@ -13,4 +13,4 @@ This project was in collaboration with my teammate <a href="https://github.com/L
 
 ![image](https://user-images.githubusercontent.com/23630745/185217066-e7533cc8-153b-4b1d-a415-648f92e9e32e.png)
 
-![image](https://user-images.githubusercontent.com/23630745/185217142-c442eb37-34ac-49c3-b574-44801fdb59e5.png)
+![image](https://user-images.githubusercontent.com/23630745/185217244-77288784-bcb8-4513-a88d-c058b268e3da.png)
